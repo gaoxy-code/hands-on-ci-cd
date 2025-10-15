@@ -8,7 +8,7 @@ on:
         required: true
         description: A cheerful word
 jobs:
-  manual:
+  run:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ inputs.greeting }}"
