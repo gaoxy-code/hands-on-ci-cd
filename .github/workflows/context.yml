@@ -1,0 +1,7 @@
+name: Context Workflow
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.actor }} triggered a ${{ github.event_name }} event on repository ${{ github.repository }}"
