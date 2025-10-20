@@ -1,0 +1,12 @@
+name: Override environment variables
+on: push
+env:
+  EXAMPLE_VAR: "This is the original value"
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${EXAMPLE_VAR}"
+      - env:
+          EXAMPLE_VAR: "Defined by step level"
+        run: echo "${EXAMPLE_VAR}"
