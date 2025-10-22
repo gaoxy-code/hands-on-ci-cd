@@ -8,6 +8,6 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v5
-      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}! Thanks for your contribution."
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
