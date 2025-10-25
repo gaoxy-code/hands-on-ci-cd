@@ -3,7 +3,7 @@ on: push
 jobs:
   timeout-job:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 1 # Set job timeout to 1 minute
     steps:
-      - name: Sleep for 1 minute
-        run: sleep 60
+      - name: Sleep for 2 minutes
+        run: sleep 120
