@@ -15,5 +15,7 @@ jobs:
   call-workflow:
     needs: run
     uses: ./.github/workflows/slack-notification.yml
+    secrets:
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
     with:
       exitCode: "success"

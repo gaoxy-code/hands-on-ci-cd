@@ -5,6 +5,10 @@ on:
       exitCode:
         required: true
         type: string
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: true
+        description: "Slack Bot Token for notifications"
 jobs:
   notify:
     runs-on: ubuntu-latest
