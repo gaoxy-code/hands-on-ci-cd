@@ -11,16 +11,56 @@ jobs:
     steps:
       - name: Notify Slack - Success
         if: ${{ inputs.exitCode == 'success' }}
-        uses: rtCamp/action-slack-notify@v2
+        uses: slackapi/slack-github-action@v1.26.0
         env:
-          SLACK_MESSAGE: "✅ Workflow Succeeded!"
-          SLACK_TITLE: "Workflow Result"
-          SLACK_COLOR: good
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
+        with:
+          channel-id: ${{ vars.SLACK_NOTIFY_CHANNEL_ID }}
+          payload: |
+            {
+              "text": "✅ GitHub Actions Workflow Succeeded!",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "✅ Workflow Succeeded!"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Repository:* ${{ github.repository }}\n*Workflow:* ${{ github.workflow }}"
+                  }
+                }
+              ]
+            }
 
       - name: Notify Slack - Failure
         if: ${{ inputs.exitCode != 'success' }}
-        uses: rtCamp/action-slack-notify@v2
+        uses: slackapi/slack-github-action@v1.26.0
         env:
-          SLACK_MESSAGE: "❌ Workflow Failed!"
-          SLACK_TITLE: "Workflow Result"
-          SLACK_COLOR: danger
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
+        with:
+          channel-id: ${{ vars.SLACK_NOTIFY_CHANNEL_ID }}
+          payload: |
+            {
+              "text": "❌ GitHub Actions Workflow Failed!",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "❌ Workflow Failed!"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Repository:* ${{ github.repository }}\n*Workflow:* ${{ github.workflow }}"
+                  }
+                }
+              ]
+            }
