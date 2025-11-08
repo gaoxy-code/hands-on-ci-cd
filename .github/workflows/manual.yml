@@ -15,3 +15,5 @@ jobs:
   call-workflow:
     needs: run
     uses: ./.github/workflows/slack-notification.yml
+    with:
+      exitCode: "success"

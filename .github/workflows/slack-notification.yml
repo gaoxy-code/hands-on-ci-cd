@@ -5,29 +5,22 @@ on:
       exitCode:
         required: true
         type: string
-      slackChannelId:
-        required: true
-        type: string
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
       - name: Notify Slack - Success
         if: ${{ inputs.exitCode == 'success' }}
-        uses: slackapi/slack-github-action@v1.26.0
+        uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
-        with:
-          channel-id: ${{ vars.SLACK_NOTIFY_CHANNEL_ID }}
-          payload: |
-            # Success Notification
+          SLACK_MESSAGE: "✅ Workflow Succeeded!"
+          SLACK_TITLE: "Workflow Result"
+          SLACK_COLOR: good
 
       - name: Notify Slack - Failure
         if: ${{ inputs.exitCode != 'success' }}
-        uses: slackapi/slack-github-action@v1.26.0
+        uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
-        with:
-          channel-id: ${{ vars.SLACK_NOTIFY_CHANNEL_ID }}
-          payload: |
-            # Failure Notification
+          SLACK_MESSAGE: "❌ Workflow Failed!"
+          SLACK_TITLE: "Workflow Result"
+          SLACK_COLOR: danger
