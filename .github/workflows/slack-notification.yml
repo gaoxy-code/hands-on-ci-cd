@@ -17,7 +17,7 @@ jobs:
         if: ${{ inputs.exitCode == 'success' }}
         uses: slackapi/slack-github-action@v1.26.0
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
           channel-id: ${{ vars.SLACK_NOTIFY_CHANNEL_ID }}
           payload: |
@@ -45,7 +45,7 @@ jobs:
         if: ${{ inputs.exitCode != 'success' }}
         uses: slackapi/slack-github-action@v1.26.0
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN_GITHUB_NOTIFY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
           channel-id: ${{ vars.SLACK_NOTIFY_CHANNEL_ID }}
           payload: |
