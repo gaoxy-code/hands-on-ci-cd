@@ -7,4 +7,10 @@ jobs:
       - run: |
           echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
           echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
-          echo "- second line" >> '${GITHUB_STEP_SUMMARY}'
+          echo "- second line" >> "${GITHUB_STEP_SUMMARY}"
+          echo "" >> "${GITHUB_STEP_SUMMARY}"
+          echo "## Another Title :tada:" >> "${GITHUB_STEP_SUMMARY}"
+          echo "Some more details here." >> "${GITHUB_STEP_SUMMARY}"
+          echo "" >> "${GITHUB_STEP_SUMMARY}"
+          echo "### Subsection" >> "${GITHUB_STEP_SUMMARY}"
+          echo "Additional information in the subsection." >> "${GITHUB_STEP_SUMMARY}"
