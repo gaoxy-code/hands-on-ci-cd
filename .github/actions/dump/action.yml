@@ -14,13 +14,15 @@ outputs:
 runs:
   using: composite # アクションの実装方式
   steps:
-    - run: printenv sort
+    - run: printenv | sort
       shell: bash
-    - run: echo '${CONTEXT}'
+    - run: echo "${CONTEXT}"
       if: ${{ inputs.enable-context == 'true' }}
       env:
         CONTEXT: ${{ toJSON(github) }}
       shell: bash
     - id: current
-      run: echo "date=${date}" >> "${GITHUB_OUTPUT}"
+      run: |
+        # set the 'date' output so the action output mapping can reference it
+        echo "date=$(date)" >> "${GITHUB_OUTPUT}"
       shell: bash
