@@ -14,15 +14,9 @@ outputs:
 runs:
   using: composite # アクションの実装方式
   steps:
-    - run: printenv | sort
-      shell: bash
-    - run: echo "${CONTEXT}"
-      if: ${{ inputs.enable-context == 'true' }}
+    - id: current
+      run: bash "${GITHUB_ACTION_PATH}/dump.sh"
       env:
         CONTEXT: ${{ toJSON(github) }}
-      shell: bash
-    - id: current
-      run: |
-        # set the 'date' output so the action output mapping can reference it
-        echo "date=$(date)" >> "${GITHUB_OUTPUT}"
+        ENABLE_CONTEXT: ${{ inputs.enable-context }}
       shell: bash
